@@ -28,7 +28,6 @@ public class MessageController {
 	public List<Message> getMessagesByQueue() {
 		return messageService.getMessages();
 		
-		
 	}
 	
 	
