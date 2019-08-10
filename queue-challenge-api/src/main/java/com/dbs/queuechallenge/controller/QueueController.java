@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dbs.queuechallenge.entities.QueueInfo;
+
 @RestController
 @RequestMapping("/queue")
 public class QueueController {
@@ -22,20 +24,25 @@ public class QueueController {
 	
 	@GetMapping("/getAll")
 	@ResponseBody
-	public List<String> getAllQueues(){
-		return new ArrayList<String>();
+	public List<QueueInfo> getAllQueues(){
+		QueueInfo info = new QueueInfo(26, "Queue5", 5 );
+		List<QueueInfo> list = new ArrayList<QueueInfo>();
+		list.add(info);
+		return list;
 	}
+	
+	
 	
 	@PostMapping("/add")
 	@ResponseBody
-	public boolean addQueue(@RequestBody String queue) {
+	public boolean addQueue(@RequestBody QueueInfo queue) {
 		return true;
 		
 	}
 	
-	@PostMapping("/delete")
+	@GetMapping("/delete")
 	@ResponseBody
-	public boolean deleteQueue(@RequestBody String queue) {
+	public boolean deleteQueue(@RequestBody QueueInfo queue) {
 		return true;
 	}
 }

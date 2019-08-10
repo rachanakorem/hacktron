@@ -1,11 +1,11 @@
 package com.dbs.queuechallenge.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.sound.sampled.AudioFormat.Encoding;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,35 +18,29 @@ import com.dbs.queuechallenge.service.MessageService;
 @RestController
 @RequestMapping("message")
 public class MessageController {
-	
+
 	@Autowired
 	private MessageService messageService;
-	
-	@RequestMapping("/getAll")
-	@GetMapping
+
+	@RequestMapping("/get/{qid}")
 	@ResponseBody
-	public List<Message> getMessagesByQueue() {
-		return messageService.getMessages();
-		
+	public List<Message> getMessagesByQueue(@PathVariable(name = "qid") int queueId) {
+		return messageService.getMessage(queueId);
+
 	}
-	
-	
+
 	@RequestMapping("/add")
+	@PostMapping(consumes = "application/json")
+	@ResponseBody
+	public String addMessage(@RequestBody Message message) {
+		return messageService.addMessage(message.getMessage());
+	}
+
+	@RequestMapping("/delete/{qid}")
 	@PostMapping
 	@ResponseBody
-	public List<Message> addMessage( @RequestBody List<Message> body){
-		return messageService.addMessages(body);
+	public String deleteMessage(@PathVariable(name = "qid") int queueId) {
+		return messageService.deleteMessage(queueId);
 	}
-	
-	
-	
-	@RequestMapping("/delete")
-	@PostMapping
-	@ResponseBody
-	public List<Message> deleteMessage( @RequestBody List<Message> body){
-		return messageService.deleteMessages(body);
-	}
-	
-	
 
 }

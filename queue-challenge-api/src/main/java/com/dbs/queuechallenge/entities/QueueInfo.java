@@ -66,4 +66,11 @@ public class QueueInfo implements Serializable {
 		this.messages = messages;
 	}
 
+	public QueueInfo(int id, String name, int size) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.size = size;
+	}
+
 }
