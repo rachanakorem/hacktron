@@ -1,7 +1,9 @@
 package com.dbs.queuechallenge.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,18 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dbs.queuechallenge.service.MessageService;
+
 @RestController
 @RequestMapping("message")
 public class MessageController {
 	
-//	@Autowired
-//	private MessageService messageService;
+	@Autowired
+	private MessageService messageService;
 	
 	@RequestMapping("/getAll")
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<Object> getMessagesByQueue() {
-		return ResponseEntity.ok(new String("hello"));
+	public List<String> getMessagesByQueue() {
+		return messageService.getMessages();
 		
 		
 	}
@@ -30,8 +34,8 @@ public class MessageController {
 	@RequestMapping("/add")
 	@PostMapping
 	@ResponseBody
-	public ArrayList addMessage( @RequestBody ArrayList<String> body){
-		return body;
+	public List<String> addMessage( @RequestBody ArrayList<String> body){
+		return messageService.addMessages(body);
 	}
 	
 	
@@ -39,8 +43,8 @@ public class MessageController {
 	@RequestMapping("/delete")
 	@PostMapping
 	@ResponseBody
-	public ArrayList deleteMessage( @RequestBody ArrayList<String> body){
-		return body;
+	public List<String> deleteMessage( @RequestBody ArrayList<String> body){
+		return messageService.deleteMessages(body);
 	}
 	
 	
