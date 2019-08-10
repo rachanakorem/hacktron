@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 public class MessageService {
 
 	
+	
 	public List<String> addMessages(List<String> messages) {
 		List<String> l = new ArrayList<String>() {{add("from add message");}};
 		return l;
