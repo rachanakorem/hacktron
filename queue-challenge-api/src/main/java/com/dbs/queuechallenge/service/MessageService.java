@@ -6,25 +6,27 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.dbs.queuechallenge.entities.Message;
+
 @Service
 public class MessageService {
 
 	
 	
-	public List<String> addMessages(List<String> messages) {
-		List<String> l = new ArrayList<String>() {{add("from add message");}};
-		return l;
+	public List<Message> addMessages(List<Message> messages) {
+		List<Message> message = new ArrayList<>();
+		return message;
 	}
 	
 	
-	public List<String> deleteMessages(List<String> messages) {
-		List<String> l = new ArrayList<String>() {{add("from delete message");}};
-		return l;
+	public List<Message>  deleteMessages(List<Message> messages) {
+		List<Message> message = new ArrayList<>();
+		return message;
 	}
 	
-	public List<String> getMessages() {
-		List<String> l = new ArrayList<String>() {{add("from get message");}};
-		return l;
+	public List<Message> getMessages() {
+		List<Message> message = new ArrayList<>();
+		return message;
 	}
 	
 	

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dbs.queuechallenge.entities.Message;
 import com.dbs.queuechallenge.service.MessageService;
 
 @RestController
@@ -24,9 +25,8 @@ public class MessageController {
 	@RequestMapping("/getAll")
 	@GetMapping
 	@ResponseBody
-	public List<String> getMessagesByQueue() {
+	public List<Message> getMessagesByQueue() {
 		return messageService.getMessages();
-		
 		
 	}
 	
@@ -34,7 +34,7 @@ public class MessageController {
 	@RequestMapping("/add")
 	@PostMapping
 	@ResponseBody
-	public List<String> addMessage( @RequestBody ArrayList<String> body){
+	public List<Message> addMessage( @RequestBody List<Message> body){
 		return messageService.addMessages(body);
 	}
 	
@@ -43,7 +43,7 @@ public class MessageController {
 	@RequestMapping("/delete")
 	@PostMapping
 	@ResponseBody
-	public List<String> deleteMessage( @RequestBody ArrayList<String> body){
+	public List<Message> deleteMessage( @RequestBody List<Message> body){
 		return messageService.deleteMessages(body);
 	}
 	
